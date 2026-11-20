@@ -1,4 +1,4 @@
-FROM php:8.3-cli-alpine
+FROM php:8.4-cli-alpine
 
 # Install system dependencies & PHP extensions
 RUN apk add --no-cache \
@@ -23,7 +23,7 @@ WORKDIR /app
 COPY . .
 
 # Install production PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-req=php+
 
 # Ensure permissions
 RUN mkdir -p storage/framework/cache/data \
